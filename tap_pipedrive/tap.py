@@ -5,9 +5,8 @@ from __future__ import annotations
 import datetime
 
 from singer_sdk import Tap
-from singer_sdk import typing as th  # JSON schema typing helpers
+from singer_sdk import typing as th
 
-# TODO: Import your custom stream types here:
 from tap_pipedrive import streams
 
 
@@ -16,7 +15,6 @@ class TapPipedrive(Tap):
 
     name = "tap-pipedrive"
 
-    # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
             "api_token",

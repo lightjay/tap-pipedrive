@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import sys
 from typing import TYPE_CHECKING, Any, Iterable
 
 from singer_sdk.authenticators import APIKeyAuthenticator
@@ -10,15 +9,8 @@ from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.pagination import BaseAPIPaginator  # noqa: TCH002
 from singer_sdk.streams import RESTStream
 
-from http import HTTPStatus
-from singer_sdk.exceptions import FatalAPIError, RetriableAPIError
-
 from tap_pipedrive.pagination import PipedrivePaginator
 
-if sys.version_info >= (3, 9):
-    import importlib.resources as importlib_resources
-else:
-    import importlib_resources
 
 if TYPE_CHECKING:
     import requests
@@ -61,8 +53,6 @@ class PipedriveStream(RESTStream):
         headers = {}
         if "user_agent" in self.config:
             headers["User-Agent"] = self.config.get("user_agent")
-        # If not using an authenticator, you may also provide inline auth headers:
-        # headers["Private-Token"] = self.config.get("auth_token")  # noqa: ERA001
         return headers
 
     def get_new_paginator(self) -> BaseAPIPaginator:
@@ -73,7 +63,8 @@ class PipedriveStream(RESTStream):
         then you can remove this method.
 
         If you need custom pagination that uses page numbers, "next" links, or
-        other approaches, please read the guide: https://sdk.meltano.com/en/v0.25.0/guides/pagination-classes.html.
+        other approaches, please read the guide:
+        https://sdk.meltano.com/en/v0.25.0/guides/pagination-classes.html.
 
         Returns:
             A pagination helper instance.
@@ -94,8 +85,7 @@ class PipedriveStream(RESTStream):
         Returns:
             A dictionary of URL query parameters.
         """
-        params: dict = {}
-        params["limit"] = 500  # 100 is default. 500 is max
+        params: dict = {"limit": 500}  # 100 is default. 500 is max
         if next_page_token:
             params["cursor"] = next_page_token
         if self.replication_key:
@@ -112,24 +102,6 @@ class PipedriveStream(RESTStream):
             Each record from the source.
         """
         yield from extract_jsonpath(self.records_jsonpath, input=response.json())
-
-
-    def validate_response(self, response: requests.Response) -> None:
-        if (
-                response.status_code in self.extra_retry_statuses
-                or response.status_code >= HTTPStatus.INTERNAL_SERVER_ERROR
-        ):
-            msg = self.response_error_message(response)
-            raise RetriableAPIError(msg, response)
-
-        if (
-                HTTPStatus.BAD_REQUEST
-                <= response.status_code
-                < HTTPStatus.INTERNAL_SERVER_ERROR
-        ):
-            raise Exception(f"HERE: {response.url}")
-            msg = self.response_error_message(response)
-            raise FatalAPIError(msg)
 
 
 class PipedriveStreamV1(PipedriveStream):
@@ -150,8 +122,7 @@ class PipedriveStreamV1(PipedriveStream):
         Returns:
             A dictionary of URL query parameters.
         """
-        params: dict = {}
-        params["limit"] = 500  # 100 is default. 500 is max
+        params: dict = {"limit": 500}
         if next_page_token:
             params["start"] = next_page_token
         return params

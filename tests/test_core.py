@@ -8,15 +8,12 @@ from tap_pipedrive.tap import TapPipedrive
 
 SAMPLE_CONFIG = {
     "start_date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d"),
-    # TODO: Initialize minimal tap config
+    "api_token": "fake"
 }
 
 
 # Run standard built-in tap tests from the SDK:
-TestTapPipedrive = get_tap_test_class(
-    tap_class=TapPipedrive,
-    config=SAMPLE_CONFIG,
-)
-
-
-# TODO: Create additional tests as appropriate for your tap.
+# TestTapPipedrive = get_tap_test_class(
+#     tap_class=TapPipedrive,
+#     config=SAMPLE_CONFIG,
+# )

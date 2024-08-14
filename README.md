@@ -4,25 +4,13 @@
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
-<!--
-
-Developer TODO: Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.
-
 ## Installation
-
-Install from PyPi:
-
-```bash
-pipx install tap-pipedrive
-```
 
 Install from GitHub:
 
 ```bash
 pipx install git+https://github.com/ORG_NAME/tap-pipedrive.git@main
 ```
-
--->
 
 ## Configuration
 
@@ -37,6 +25,14 @@ This section can be created by copy-pasting the CLI output from:
 tap-pipedrive --about --format=markdown
 ```
 -->
+
+| Setting | Required | Default | Description |
+|:--------|:--------:|:-------:|:------------|
+| api_token | True     | None    | The token to authenticate against the API service |
+| request_timeout | False    |     300 | The request timeout, default 300 seconds. |
+| start_date | False    | 2024-08-13 00:00:00 | The earliest record date to sync |
+| user_agent | False    | tap-pipedrive (info@doona.dev) | The user agent to send with requests. |
+
 
 A full list of supported settings and capabilities for this
 tap is available by running:

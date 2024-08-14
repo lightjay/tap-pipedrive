@@ -1,5 +1,3 @@
-import logging
-
 from requests import Response
 from singer_sdk.pagination import JSONPathPaginator
 
@@ -23,14 +21,6 @@ class PipedrivePaginator(JSONPathPaginator):
             return
 
         new_value = self.get_next(response)
-
-        # if new_value and new_value == self._value:
-        #     msg = (
-        #         f"Loop detected in pagination. Pagination token {new_value} is "
-        #         "identical to prior token."
-        #     )
-        #     self._finished = True
-        #     raise RuntimeError(msg)
 
         # Stop if new value None, empty string, 0, etc.
         if not new_value or (new_value and new_value == self._value):
