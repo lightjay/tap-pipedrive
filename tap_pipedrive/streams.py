@@ -29,7 +29,7 @@ class ActivitiesStream(PipedriveStream):
         th.Property("deal_id", th.IntegerType),
         th.Property("done", th.BooleanType),
         th.Property("due_date", th.DateTimeType),
-        th.Property("due_time", th.DateTimeType),
+        th.Property("due_time", th.StringType),
         th.Property("duration", th.StringType),
         th.Property("id", th.IntegerType),
         th.Property("lead_id", th.StringType),
