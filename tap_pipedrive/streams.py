@@ -132,7 +132,6 @@ class FilesStream(PipedriveStreamV1):
     path = "/v1/files"
     primary_keys: t.ClassVar[list[str]] = ["id"]
     replication_key = None
-    replication_param = "start"
     schema = th.PropertiesList(
         th.Property("active_flag", th.BooleanType),
         th.Property("activity_id", th.IntegerType),
