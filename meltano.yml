@@ -30,28 +30,26 @@ plugins:
       kind: string
     settings_group_validation:
     - [api_token]
-    config:
-      start_date: '2023-01-01 00:00:00'
     select:
       - "activities.*"
-      - "activity_types.*"
-      - "deals.*"
-      - "files.*"
-      - "filters.*"
-      - "lead_labels.*"
-      - "leads.*"
-      - "notes.*"
-      - "organizations.*"
-      - "permission_sets.*"
-      - "persons.*"
-      - "pipelines.*"
-      - "products.*"
-      - "projects.*"
-      - "project_templates.*"
-      - "roles.*"
-      - "stages.*"
-      - "tasks.*"
-      - "users.*"
+#      - "activity_types.*"
+#      - "deals.*"
+#      - "files.*"
+#      - "filters.*"
+#      - "lead_labels.*"
+#      - "leads.*"
+#      - "notes.*"
+#      - "organizations.*"
+#      - "permission_sets.*"
+#      - "persons.*"
+#      - "pipelines.*"
+#      - "products.*"
+#      - "projects.*"
+#      - "project_templates.*"
+#      - "roles.*"
+#      - "stages.*"
+#      - "tasks.*"
+#      - "users.*"
   loaders:
   - name: target-jsonl
     variant: andyh1203

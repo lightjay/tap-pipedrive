@@ -28,7 +28,7 @@ class ActivitiesStream(PipedriveStream):
         th.Property("conference_meeting_url", th.StringType),
         th.Property("deal_id", th.IntegerType),
         th.Property("done", th.BooleanType),
-        th.Property("due_date", th.DateTimeType),
+        th.Property("due_date", th.DateType),
         th.Property("due_time", th.StringType),
         th.Property("duration", th.StringType),
         th.Property("id", th.IntegerType),
