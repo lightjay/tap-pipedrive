@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "doona-dev-tap-pipedrive"
-version = "0.0.1"
+version = "0.0.2"
 description = "Singer tap for Pipedrive, built with the Meltano Singer SDK."
 readme = "README.md"
 authors = ["Josh Lloyd <josh.lloyd@00.ventures>"]
